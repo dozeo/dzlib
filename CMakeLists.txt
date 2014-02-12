@@ -10,7 +10,8 @@ set (srcfiles
 	"src/strstream.cpp")
 
 set (hdr_public
-	"include/dzlib/strstream.h")
+	"include/dzlib/strstream.h"
+	"include/dzlib/dzexception.h")
 
 add_library (dzlib STATIC ${srcfiles} ${hdr_public})
 
