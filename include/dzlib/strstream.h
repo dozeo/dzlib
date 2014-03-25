@@ -9,30 +9,23 @@ namespace dz
 	class strstream
 	{
 		public:
-#ifdef _WIN32
-			template<typename T>
-			friend strstream& operator<< (strstream& out, T what)
-			{
-				out.m_str << what;
-				return out;
-			}
-#else
-			template<typename T>
-			friend strstream operator<< (strstream&& out, T what)
-			{
-				out.m_str << what;
-				return std::move(out);
-			}
-#endif
+			strstream() { }
 
-			operator std::string()
-			{
-				return m_str.str();
-			}
+			template<typename T>
+			friend strstream&& operator<< (strstream&& out, T what);
+
+			operator std::string() { return m_str.str(); }
 
 		private:
 			std::ostringstream m_str;
 	};
+
+	template<typename T>
+	strstream&& operator<< (strstream&& out, T what)
+	{
+		out.m_str << what;
+		return std::move(out);
+	}
 }
 
 
