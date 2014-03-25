@@ -16,6 +16,9 @@ namespace dz
 			template<typename T>
 			friend strstream& operator<< (strstream& out, T what);
 
+            template<typename T>
+            friend strstream&& operator<< (strstream&& out, T what);
+        
 			operator std::string()
 			{
 				return m_str.str();
@@ -30,6 +33,13 @@ namespace dz
 	{
 		out.m_str << what;
 		return out;
+	}
+    
+	template<typename T>
+	strstream&& operator<< (strstream&& out, T what)
+	{
+		out.m_str << what;
+		return std::move(out);
 	}
 }
 
