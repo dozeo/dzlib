@@ -9,32 +9,17 @@ namespace dz
 	class strstream
 	{
 		public:
-			strstream()
-			{
-			}
+			strstream() { }
 
 			template<typename T>
-			friend strstream& operator<< (strstream& out, T what);
+			friend strstream&& operator<< (strstream&& out, T what);
 
-            template<typename T>
-            friend strstream&& operator<< (strstream&& out, T what);
-        
-			operator std::string()
-			{
-				return m_str.str();
-			}
+			operator std::string() { return m_str.str(); }
 
 		private:
 			std::ostringstream m_str;
 	};
 
-	template<typename T>
-	strstream& operator<< (strstream& out, T what)
-	{
-		out.m_str << what;
-		return out;
-	}
-    
 	template<typename T>
 	strstream&& operator<< (strstream&& out, T what)
 	{
