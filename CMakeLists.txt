@@ -1,24 +1,27 @@
 cmake_minimum_required (VERSION 2.8)
 
-project (dzlib CXX)
+project(dzlib)
 
-include (cmake/unify.cmake)
+include(cmake/unify.cmake)
 
-include_directories ("include/")
+list(APPEND include_dirs "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-set (srcfiles
+set(src
 	"src/strstream.cpp")
 
-set (hdr_public
+set(hdr_public
 	"include/dzlib/strstream.h"
 	"include/dzlib/dzexception.h")
 
-add_library (dzlib STATIC ${srcfiles} ${hdr_public})
+add_library(dzlib STATIC ${src} ${hdr_public})
+set_target_properties(dzlib PROPERTIES
+	PUBLIC_HEADER "${hdr_public}"
+	INCLUDE_DIRECTORIES "${include_dirs}"
+	INTERFACE_INCLUDE_DIRECTORIES "${include_dirs}"
+	)
 
 install (TARGETS dzlib
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
-	ARCHIVE DESTINATION lib)
-
-install (FILES ${hdr_public}
-	DESTINATION include/dzlib)
+	ARCHIVE DESTINATION lib
+	PUBLIC_HEADER DESTINATION include/dzlib)
