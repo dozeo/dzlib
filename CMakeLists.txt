@@ -2,8 +2,6 @@ cmake_minimum_required (VERSION 2.8)
 
 project(dzlib)
 
-include(cmake/unify.cmake)
-
 list(APPEND include_dirs "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 set(src
@@ -20,7 +18,7 @@ set_target_properties(dzlib PROPERTIES
 	INTERFACE_INCLUDE_DIRECTORIES "${include_dirs}"
 	)
 
-install (TARGETS dzlib
+install(TARGETS dzlib
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
