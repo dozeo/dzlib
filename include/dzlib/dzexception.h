@@ -1,7 +1,7 @@
 #ifndef x8d6a0e1838ec4951b2928f9f970acbbd
 #define x8d6a0e1838ec4951b2928f9f970acbbd
 
-#include <dzlib/strstream.h>
+#include <string>
 
 namespace dz
 {
