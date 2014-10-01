@@ -8,7 +8,6 @@ set(src
 	"src/console_helpers.cpp")
 
 set(hdr_public
-	"include/dzlib/strstream.h"
 	"include/dzlib/dzexception.h"
 	"include/dzlib/console_helpers.h")
 
