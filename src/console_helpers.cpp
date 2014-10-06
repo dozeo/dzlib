@@ -10,15 +10,31 @@
 
 #include <ios>
 #include <iostream>
+#include <slog/slog.h>
+
+#ifdef _MSC_VER
+#undef isatty
+#undef fileno
+#define isatty _isatty
+#define fileno _fileno
+#endif
 
 namespace dz
 {
 	void alloc_console_if_possible()
 	{
 #ifdef _WIN32
+		//// already a terminal
+		//if (isatty(fileno(stdin)))
+		//	return;
+		FreeConsole();
+
 		// exit if we already have a console
 		if (AllocConsole() == false)
+		{
+			slog::info() << "Already have console.. will not allocate a new one";
 			return;
+		}
 
 		// redirect unbuffered STDOUT to the console
 		{

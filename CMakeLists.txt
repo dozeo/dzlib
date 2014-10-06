@@ -17,6 +17,7 @@ set_target_properties(dzlib PROPERTIES
 	INCLUDE_DIRECTORIES "${include_dirs}"
 	INTERFACE_INCLUDE_DIRECTORIES "${include_dirs}"
 	)
+target_link_libraries(dzlib slog)
 
 install(TARGETS dzlib
 	RUNTIME DESTINATION bin

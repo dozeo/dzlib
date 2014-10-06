@@ -1,19 +1,20 @@
 #ifndef x8d6a0e1838ec4951b2928f9f970acbbd
 #define x8d6a0e1838ec4951b2928f9f970acbbd
 
+#include <stdexcept>
 #include <string>
 
 namespace dz
 {
-	class exception
+	class exception : public std::runtime_error
 	{
 		public:
-			exception(std::string msg) : m_msg(msg) { }
+			exception(std::string msg) : runtime_error(msg.c_str()) { }
 
-			std::string msg() const { return m_msg; }
+			//const char* what() const { return m_msg; }
 
 		private:
-			std::string m_msg;
+			//std::string m_msg;
 	};
 }
 
